@@ -26,7 +26,7 @@ def connection_test():
 def about():
     print("-----------------------------")
     print("modrinth小助手 —— GavinCQTD")
-    print("v1.0.0 d2")
+    print("v1.0.0 d3")
     print("-----------------------------\n")
 
 

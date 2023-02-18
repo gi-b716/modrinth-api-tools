@@ -1,7 +1,10 @@
 import requests
 
 def CTt():
-    gets = requests.get("https://api.modrinth.com/")
+    try:
+        gets = requests.get("https://api.modrinth.com/")
+    except requests.exceptions.ConnectionError:
+        return "请检查你的网络设置！"
     getsj = gets.json()
     
     if gets.status_code == 200:
