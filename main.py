@@ -50,7 +50,7 @@ def connection_test():
 def about():
     print("-----------------------------")
     print("modrinth小助手 —— GavinCQTD")
-    print("v1.0.0 d5.1")
+    print("v1.0.0")
     print("-----------------------------\n")
 
 def check_project(idorslug):
@@ -81,6 +81,7 @@ def project_info(info):
     while temp!="q":
         print('1.查看项目描述')
         print("2.查看项目支持版本")
+        print("3.查看项目相关链接")
         print("q.退出项目信息")
         temp = input("请选择功能：    (输入功能编号)")
         
@@ -89,6 +90,8 @@ def project_info(info):
             time.sleep(2)
         elif temp=="2":
             print("\n支持的游戏版本：{0}\n支持的mod加载器：{1}\n".format(info[9], info[10]))
+        elif temp=="3":
+            print("\n问题反馈链接：{0} 项目链接：{1}\nwiki链接：{2} discord链接：{3}\n打赏链接：{4}".format(info[11], info[12], info[13], info[14], info[15]))
 
 
 about()
