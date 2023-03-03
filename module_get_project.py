@@ -22,5 +22,13 @@ def IGd(gets_json):
     info = [gets_json['title'], gets_json['description'], gets_json['project_type'], gets_json['client_side'],
             gets_json['server_side'], gets_json['downloads'], gets_json['followers'], gets_json['body'],
             gets_json['license']['id'], gets_json['game_versions'], gets_json['loaders'], gets_json['issues_url'],
-            gets_json['source_url'], gets_json['wiki_url'], gets_json['discord_url'], gets_json['donation_urls']]
+            gets_json['source_url'], gets_json['wiki_url'], gets_json['discord_url'], gets_json['donation_urls'],
+            gets_json['slug']]
     return info
+
+def IEs(query, facets, index):
+    gurl = "https://api.modrinth.com/v2/search?query={0}".format(query)
+    
+    
+    
+    gets = requests.get(gurl)

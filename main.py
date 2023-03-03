@@ -1,5 +1,7 @@
 import markdown
 import time
+import webbrowser
+import os
 
 import module_connection_test
 import module_get_project
@@ -33,7 +35,8 @@ def project():
     print("-----------------------------")
     print("请选择功能：    (输入功能编号)")
     print('1.检查某个项目是否存在')
-    print("2.获取项目信息\n")
+    print("2.获取项目信息")
+    print("3.搜索项目\n")
     print("q.退出此分类")
     print("-----------------------------")
 
@@ -50,7 +53,7 @@ def connection_test():
 def about():
     print("-----------------------------")
     print("modrinth小助手 —— GavinCQTD")
-    print("v1.0.0")
+    print("v1.0.1")
     print("-----------------------------\n")
 
 def check_project(idorslug):
@@ -79,19 +82,27 @@ def project_info(info):
     time.sleep(3)
     
     while temp!="q":
-        print('1.查看项目描述')
+        print('\n1.查看项目描述')
         print("2.查看项目支持版本")
-        print("3.查看项目相关链接")
+        print("3.查看项目相关链接\n")
+        print("4.打开项目链接")
         print("q.退出项目信息")
         temp = input("请选择功能：    (输入功能编号)")
         
         if temp=="1":
-            print("\nmarkdown:{0}\n\nhtml:{1}\n\n许可证：{2}\n".format(info[7], markdown.markdown(info[7]),info[8]))
-            time.sleep(2)
+            # print("\nmarkdown:{0}\n\nhtml:{1}\n\n许可证：{2}\n".format(info[7], markdown.markdown(info[7]),info[8]))
+            print("\n{0}\n\n许可证：{1}\n".format(info[7], info[8]))
+            if input("输入h打开网页形式的描述，输入其他字符退出：")=="h":
+                with open("body.html", "w", encoding="utf-8", errors="xmlcharrefreplace") as output_file:
+                    output_file.write(markdown.markdown(info[7]))
+                webbrowser.open(os.path.abspath("./body.html"))
+                time.sleep(2)
         elif temp=="2":
             print("\n支持的游戏版本：{0}\n支持的mod加载器：{1}\n".format(info[9], info[10]))
         elif temp=="3":
             print("\n问题反馈链接：{0} 项目链接：{1}\nwiki链接：{2} discord链接：{3}\n打赏链接：{4}".format(info[11], info[12], info[13], info[14], info[15]))
+        elif temp=="4":
+            webbrowser.open("https://modrinth.com/{0}/{1}".format(info[2], info[16]))
 
 
 about()
