@@ -2,10 +2,10 @@
 ; 有关创建 Inno Setup 脚本文件的详细资料请查阅帮助文档！
 
 #define MyAppName "modrinth-api小助手"
-#define MyAppVersion "1.0.1-1"
+#define MyAppVersion "1.0.1-2"
 #define MyAppPublisher "GavinCQTD"
 #define MyAppURL "https://github.com/gi-b716/modrinth-api-tools"
-#define MyAppExeName "modrinth-api小助手 v1.0.1-1.exe"
+#define MyAppExeName "modrinth-api小助手 v1.0.1-2.exe"
 
 [Setup]
 ; 注: AppId的值为单独标识该应用程序。
