@@ -72,10 +72,14 @@ def get_project(idorslug):
         return 0
     elif not check:
         print("该项目不存在。")
-        return 0
+        time.sleep(2)
+        return None
     return module_get_project.IEg(idorslug)
 
 def project_info(info):
+    if info is None:
+        return 0
+    
     temp = ''
     
     print("--------{0}--------\n{1}\n类型：{2} 客户端支持：{3} 服务端支持：{4}\n下载数：{5} 关注数：{6}\n".format(info[0], info[1], info[2], info[3], info[4], info[5], info[6]))
@@ -98,7 +102,7 @@ def project_info(info):
                 webbrowser.open(os.path.abspath("./body.html"))
                 time.sleep(2)
         elif temp=="2":
-            print("\n支持的游戏版本：{0}\n支持的mod加载器：{1}\n".format(info[9], info[10]))
+            print("\n支持的游戏版本：{0}\n支持的mod加载器：{1}".format(info[9], info[10]))
         elif temp=="3":
             print("\n问题反馈链接：{0} 项目链接：{1}\nwiki链接：{2} discord链接：{3}\n打赏链接：{4}".format(info[11], info[12], info[13], info[14], info[15]))
         elif temp=="4":
