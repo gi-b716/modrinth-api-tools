@@ -19,6 +19,9 @@ def IEg(project_idorslug):
     return gets.json()
 
 def IGd(gets_json):
+    if gets_json is None:
+        return None
+    
     info = [gets_json['title'], gets_json['description'], gets_json['project_type'], gets_json['client_side'],
             gets_json['server_side'], gets_json['downloads'], gets_json['followers'], gets_json['body'],
             gets_json['license']['id'], gets_json['game_versions'], gets_json['loaders'], gets_json['issues_url'],
