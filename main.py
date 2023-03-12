@@ -46,6 +46,9 @@ def project():
         time.sleep(2)
     elif function_p == "2":
         project_info(module_get_project.IGd(get_project(input("请输入项目的id或名称："))))
+    elif function_p == "3":
+        q = input("请输入要搜索的名称：")
+        search_project(module_get_project.IEs(q, "", ""))
 
 def connection_test():
     print(module_connection_test.CTt())
@@ -53,7 +56,7 @@ def connection_test():
 def about():
     print("-----------------------------")
     print("modrinth小助手 —— GavinCQTD")
-    print("v1.0.1")
+    print("v1.1.0 dev1")
     print("-----------------------------\n")
 
 def check_project(idorslug):
@@ -107,6 +110,21 @@ def project_info(info):
             print("\n问题反馈链接：{0} 项目链接：{1}\nwiki链接：{2} discord链接：{3}\n打赏链接：{4}".format(info[11], info[12], info[13], info[14], info[15]))
         elif temp=="4":
             webbrowser.open("https://modrinth.com/{0}/{1}".format(info[2], info[16]))
+
+def search_project(s_json):
+    r = list()
+    r_n = list()
+    for i in range(len(s_json['hits'])):
+        r.append(s_json['hits'][i]['title'])
+        r_n.append(s_json['hits'][i]['slug'])
+    print("\n------查询结果------")
+    for _ in range(len(r)):
+        print(str(_+1)+". "+r[_])
+    print("------查询结果------\n")
+    time.sleep(3)
+    temp = int(input("请输入要查看项目信息的项目的编号："))
+    slug = r_n[temp-1]
+    project_info(module_get_project.IGd(get_project(slug)))
 
 
 about()
