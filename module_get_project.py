@@ -33,5 +33,5 @@ def IEs(query, facets, index):
     gurl = "https://api.modrinth.com/v2/search?query={0}".format(query)
     
     
-    
     gets = requests.get(gurl)
+    return gets.json()
