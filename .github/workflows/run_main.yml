@@ -1,6 +1,6 @@
 name: Run
 
-on: [push]
+on: [pull-requests]
 
 jobs:
   build:
