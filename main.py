@@ -117,14 +117,18 @@ def search_project(s_json):
     for i in range(len(s_json['hits'])):
         r.append(s_json['hits'][i]['title'])
         r_n.append(s_json['hits'][i]['slug'])
-    print("\n------查询结果------")
-    for _ in range(len(r)):
-        print(str(_+1)+". "+r[_])
-    print("------查询结果------\n")
-    time.sleep(3)
-    temp = int(input("请输入要查看项目信息的项目的编号："))
-    slug = r_n[temp-1]
-    project_info(module_get_project.IGd(get_project(slug)))
+    if len(r)==0:
+        print("\n---没有查询到任何结果！---\n")
+        time.sleep(2)
+    else:
+        print("\n------查询结果------")
+        for _ in range(len(r)):
+            print(str(_+1)+". "+r[_])
+        print("------查询结果------\n")
+        time.sleep(3)
+        temp = int(input("请输入要查看项目信息的项目的编号："))
+        slug = r_n[temp-1]
+        project_info(module_get_project.IGd(get_project(slug)))
 
 
 about()
