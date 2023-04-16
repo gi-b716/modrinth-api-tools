@@ -48,7 +48,16 @@ def project():
         project_info(module_get_project.IGd(get_project(input("请输入项目的id或名称："))))
     elif function_p == "3":
         q = input("请输入要搜索的名称：")
-        search_project(module_get_project.IEs(q, "", ""))
+        temp = None
+        facets = list()
+        
+        ver_l = list()
+        while temp!="q":
+            temp = input("请输入想让搜索结果支持的Minecraft版本：  输入q结束输入")
+            ver_l.append(temp)
+        facets.append(module_get_project.IEs_Gver(ver_l))
+        
+        search_project(module_get_project.IEs(q, facets, ""))
 
 def connection_test():
     print(module_connection_test.CTt())
@@ -114,11 +123,15 @@ def project_info(info):
 def search_project(s_json):
     r = list()
     r_n = list()
-    for i in range(len(s_json['hits'])):
-        r.append(s_json['hits'][i]['title'])
-        r_n.append(s_json['hits'][i]['slug'])
-    if len(r)==0:
+    try:
+        for i in range(len(s_json['hits'])):
+            r.append(s_json['hits'][i]['title'])
+            r_n.append(s_json['hits'][i]['slug'])
+    except KeyError:
         print("\n---没有查询到任何结果！---\n")
+        time.sleep(2)
+    except TypeError:
+        print("请检查你的网络设置！")
         time.sleep(2)
     else:
         print("\n------查询结果------")

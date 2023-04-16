@@ -30,8 +30,16 @@ def IGd(gets_json):
     return info
 
 def IEs(query, facets, index):
-    gurl = "https://api.modrinth.com/v2/search?query={0}".format(query)
+    gurl = "https://api.modrinth.com/v2/search?query={0}&limit=30&facets={1}".format(query, facets)
+    try:
+        gets = requests.get(gurl)
+    except requests.exceptions.ConnectionError:
+        return None
     
-    
-    gets = requests.get(gurl)
     return gets.json()
+def IEs_Gver(ver_list):
+    ver_l = list()
+    for i in ver_list:
+        if i!="q":
+            ver_l.append("versions:{0}".format(i))
+    return ver_l
