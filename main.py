@@ -53,7 +53,7 @@ def project():
         
         ver_l = list()
         while temp!="q":
-            temp = input("请输入想让搜索结果支持的Minecraft版本：  输入q结束输入")
+            temp = input("请输入想让搜索结果支持的Minecraft版本：(支持快照、愚人节版，请输入规范)  输入q结束输入")
             ver_l.append(temp)
         facets.append(module_get_project.IEs_Gver(ver_l))
         
@@ -65,7 +65,7 @@ def connection_test():
 def about():
     print("-----------------------------")
     print("modrinth小助手 —— GavinCQTD")
-    print("v1.1.0 dev1")
+    print("v1.1.0 dev2d1")
     print("-----------------------------\n")
 
 def check_project(idorslug):
