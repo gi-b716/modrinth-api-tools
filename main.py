@@ -49,13 +49,14 @@ def project():
     elif function_p == "3":
         q = input("请输入要搜索的名称：")
         temp = None
-        facets = list()
+        facets = []
         
         ver_l = list()
         while temp!="q":
             temp = input("请输入想让搜索结果支持的Minecraft版本：(支持快照、愚人节版，请输入规范)  输入q结束输入")
             ver_l.append(temp)
-        facets.append(module_get_project.IEs_Gver(ver_l))
+        if module_get_project.IEs_Gver(ver_l) != "empty":
+            facets.append(module_get_project.IEs_Gver(ver_l))
         
         search_project(module_get_project.IEs(q, facets, ""))
 
@@ -139,9 +140,17 @@ def search_project(s_json):
             print(str(_+1)+". "+r[_])
         print("------查询结果------\n")
         time.sleep(3)
-        temp = int(input("请输入要查看项目信息的项目的编号："))
-        slug = r_n[temp-1]
-        project_info(module_get_project.IGd(get_project(slug)))
+        try:
+            temp = int(input("请输入要查看项目信息的项目的编号："))
+        except IndexError:
+            print("请输入正确的编号！")
+            search_project(s_json)
+        else:
+            if temp == 0:
+                print("请输入正确的编号！")
+                search_project(s_json)
+            slug = r_n[temp-1]
+            project_info(module_get_project.IGd(get_project(slug)))
 
 
 about()
