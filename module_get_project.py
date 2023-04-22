@@ -40,11 +40,11 @@ def IEs(query, facets, index):
         return None
     
     return gets.json()
-def IEs_Gver(ver_list):
-    if len(ver_list)==1:
+def IEs_Gfl(f_list, f_name):
+    if len(f_list)==1:
         return "empty"
-    ver_l = list()
-    for i in ver_list:
+    ver_f = list()
+    for i in f_list:
         if i!="q":
-            ver_l.append("versions:{0}".format(i))
-    return ver_l
+            ver_f.append("{0}:{1}".format(f_name, i))
+    return ver_f
