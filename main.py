@@ -3,7 +3,7 @@ import time
 import webbrowser
 import os
 
-import module_connection_test
+import module_task_processing
 import module_get_project
 
 
@@ -53,7 +53,7 @@ def project():
         search_project_O(module_get_project.IEs(q, facets, ""))
 
 def connection_test():
-    print(module_connection_test.CTt())
+    print(module_task_processing.CTt())
 
 def about():
     print("-----------------------------")

@@ -1,4 +1,5 @@
 import requests
+import module_task_processing
 
 def IEc(project_idorslug):
     try:
@@ -32,12 +33,16 @@ def IGd(gets_json):
 def IEs(query, facets, index):
     gurl = "https://api.modrinth.com/v2/search?query={0}&limit=30".format(query)
     if len(facets)!=0:
-        gurl = gurl + "&facets={0}".format(facets)
+        facets_new = "facets={0}".format(facets)
+        facets_new = module_task_processing.URLc(facets_new)
+        gurl = gurl + "&{0}".format(facets_new)
         
     try:
         gets = requests.get(gurl)
     except requests.exceptions.ConnectionError:
         return None
+    
+    a = gets.json()
     
     return gets.json()
 def IEs_Gfl(f_list, f_name):

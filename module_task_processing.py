@@ -13,3 +13,16 @@ def CTt():
         info = "连接出现错误。状态码：{0}".format(gets.status_code)
     
     return info
+
+def URLc(url):
+    new_url = ""
+    for i in url:
+        if i=="=":
+            i = "%3D"
+        elif i=="[":
+            i = "%5B"
+        elif i=="\"":
+            i = "%27"
+        
+    
+    return url
