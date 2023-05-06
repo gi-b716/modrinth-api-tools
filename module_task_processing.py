@@ -15,14 +15,7 @@ def CTt():
     return info
 
 def URLc(url):
-    new_url = ""
-    for i in url:
-        if i=="=":
-            i = "%3D"
-        elif i=="[":
-            i = "%5B"
-        elif i=="\"":
-            i = "%27"
+    pass
         
     
     return url

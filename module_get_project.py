@@ -33,9 +33,7 @@ def IGd(gets_json):
 def IEs(query, facets, index):
     gurl = "https://api.modrinth.com/v2/search?query={0}&limit=30".format(query)
     if len(facets)!=0:
-        facets_new = "facets={0}".format(facets)
-        facets_new = module_task_processing.URLc(facets_new)
-        gurl = gurl + "&{0}".format(facets_new)
+        gurl = gurl + "&{0}".format(facets)
         
     try:
         gets = requests.get(gurl)
