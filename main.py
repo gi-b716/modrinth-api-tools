@@ -3,7 +3,7 @@ import time
 import webbrowser
 import os
 
-import module_connection_test
+import module_task_processing
 import module_get_project
 
 
@@ -48,15 +48,18 @@ def project():
         project_info(module_get_project.IGd(get_project(input("请输入项目的id或名称："))))
     elif function_p == "3":
         q = input("请输入要搜索的名称：")
-        search_project(module_get_project.IEs(q, "", ""))
+        facets = search_project_I()
+        
+        search_project_O(module_get_project.IEs(q, facets, ""))
 
 def connection_test():
-    print(module_connection_test.CTt())
+    print(module_task_processing.CTt())
 
 def about():
     print("-----------------------------")
     print("modrinth小助手 —— GavinCQTD")
-    print("v1.1.0 dev1")
+    print("v1.1.0 dev2d2")
+    print("github：https://github.com/gi-b716/modrinth-api-tools")
     print("-----------------------------\n")
 
 def check_project(idorslug):
@@ -103,22 +106,68 @@ def project_info(info):
                 with open("body.html", "w", encoding="utf-8", errors="xmlcharrefreplace") as output_file:
                     output_file.write(markdown.markdown(info[7]))
                 webbrowser.open(os.path.abspath("./body.html"))
-                time.sleep(2)
         elif temp=="2":
             print("\n支持的游戏版本：{0}\n支持的mod加载器：{1}".format(info[9], info[10]))
+            time.sleep(3)
         elif temp=="3":
             print("\n问题反馈链接：{0} 项目链接：{1}\nwiki链接：{2} discord链接：{3}\n打赏链接：{4}".format(info[11], info[12], info[13], info[14], info[15]))
+            time.sleep(3)
         elif temp=="4":
             webbrowser.open("https://modrinth.com/{0}/{1}".format(info[2], info[16]))
 
-def search_project(s_json):
+def search_project_I():
+    temp = None
+    facets = []
+    temp_l = []
+    
+    while temp != "q":
+        temp = input("请输入想让搜索结果支持的Minecraft版本：(支持快照、愚人节版，请输入规范)  输入q结束输入")
+        temp_l.append(temp)
+    if module_get_project.IEs_Gfl(temp_l, "test") != "empty":
+        facets.append(module_get_project.IEs_Gfl(temp_l, "versions"))
+        
+    temp_l = []
+    temp = None
+    print("\n------------------------")
+    print("1.模组/服务器插件/数据包")
+    print("2.模组包")
+    print("3.资源包")
+    print("4.光影包")
+    print("5.全部")
+    print("------------------------")
+    while temp != "q":
+        try:
+            temp = int(input("请输入你想搜索的类型编号：  输入q或选择5退出"))
+        except ValueError:
+            temp_l.append("q")
+            break
+        else:
+            if temp not in [1,2,3,4,5]:
+                print("请输入正确序号！")
+                continue
+            elif temp == 5:
+                temp_l.append("q")
+                break
+            fields = ["mod", "modpack", "resourcepack", "shader"]
+            temp_l.append(fields[temp-1])
+    if module_get_project.IEs_Gfl(temp_l, "test") != "empty":
+        facets.append(module_get_project.IEs_Gfl(temp_l, "project_type"))
+    
+    return facets
+
+def search_project_O(s_json):
     r = list()
     r_n = list()
-    for i in range(len(s_json['hits'])):
-        r.append(s_json['hits'][i]['title'])
-        r_n.append(s_json['hits'][i]['slug'])
-    if len(r)==0:
+    temp = None
+    try:
+        for i in range(len(s_json['hits'])):
+            r.append(s_json['hits'][i]['title'])
+            r_n.append(s_json['hits'][i]['slug'])
+    except KeyError:
         print("\n---没有查询到任何结果！---\n")
+        time.sleep(2)
+    except TypeError:
+        print("请检查你的网络设置！")
         time.sleep(2)
     else:
         print("\n------查询结果------")
@@ -126,9 +175,21 @@ def search_project(s_json):
             print(str(_+1)+". "+r[_])
         print("------查询结果------\n")
         time.sleep(3)
-        temp = int(input("请输入要查看项目信息的项目的编号："))
-        slug = r_n[temp-1]
-        project_info(module_get_project.IGd(get_project(slug)))
+        while temp != "q":
+            temp = input("请输入要查看项目信息的项目的编号：  输入其他字符退出")
+            try:
+                temp = int(temp)
+            except ValueError:
+                break
+            else:
+                if temp == 0:
+                    print("请输入正确的编号！")
+                try:
+                    slug = r_n[temp-1]
+                except IndexError:
+                    print("请输入正确的编号！")
+                else:
+                    project_info(module_get_project.IGd(get_project(slug)))
 
 
 about()
