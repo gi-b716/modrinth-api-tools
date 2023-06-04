@@ -1,4 +1,5 @@
 import requests
+from urllib import request, parse
 
 def CTt():
     try:
@@ -13,3 +14,6 @@ def CTt():
         info = "连接出现错误。状态码：{0}".format(gets.status_code)
     
     return info
+
+def cURL(url):
+    return parse.quote(str(url))
