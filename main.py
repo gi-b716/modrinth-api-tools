@@ -59,6 +59,7 @@ def about():
     print("-----------------------------")
     print("modrinth小助手 —— GavinCQTD")
     print("v1.1.0 dev2d2")
+    print("github：https://github.com/gi-b716/modrinth-api-tools")
     print("-----------------------------\n")
 
 def check_project(idorslug):
