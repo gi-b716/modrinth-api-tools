@@ -58,7 +58,7 @@ def connection_test():
 def about():
     print("-----------------------------")
     print("modrinth小助手 —— GavinCQTD")
-    print("v1.1.0 dev2d1")
+    print("v1.1.0 dev2d2")
     print("-----------------------------\n")
 
 def check_project(idorslug):

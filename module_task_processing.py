@@ -1,4 +1,5 @@
 import requests
+from urllib import request, parse
 
 def CTt():
     try:
@@ -14,8 +15,5 @@ def CTt():
     
     return info
 
-def URLc(url):
-    pass
-        
-    
-    return url
+def cURL(url):
+    return parse.quote(str(url))
