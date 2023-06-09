@@ -103,9 +103,9 @@ def project_info(info):
             # print("\nmarkdown:{0}\n\nhtml:{1}\n\n许可证：{2}\n".format(info[7], markdown.markdown(info[7]),info[8]))
             print("\n{0}\n\n许可证：{1}\n".format(info[7], info[8]))
             if input("输入h打开网页形式的描述，输入其他字符退出：")=="h":
-                with open("body.html", "w", encoding="utf-8", errors="xmlcharrefreplace") as output_file:
+                with open("view.html", "w", encoding="utf-8", errors="xmlcharrefreplace") as output_file:
                     output_file.write(markdown.markdown(info[7]))
-                webbrowser.open(os.path.abspath("./body.html"))
+                webbrowser.open(os.path.abspath("view.html"))
         elif temp=="2":
             print("\n支持的游戏版本：{0}\n支持的mod加载器：{1}".format(info[9], info[10]))
             time.sleep(3)
