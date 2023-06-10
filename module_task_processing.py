@@ -1,5 +1,5 @@
 import requests
-from urllib import request, parse
+from urllib import parse
 
 def CTt():
     try:
