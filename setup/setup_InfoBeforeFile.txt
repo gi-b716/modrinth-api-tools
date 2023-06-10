@@ -1,3 +1,0 @@
-注意！
-本程序仅适用于Windows系统。（.exe文件是通过.bat编译而来，实则还是运行的Win命令行指令。）
-其它系统请下载.zip源代码包，解压后安装第三方库"markdown" "requests"，最后运行main.py。
