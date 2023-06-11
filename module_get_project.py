@@ -40,8 +40,6 @@ def IEs(query, facets, index):
     except requests.exceptions.ConnectionError:
         return None
     
-    a = gets.json()
-    
     return gets.json()
 def IEs_Gfl(f_list, f_name):
     if len(f_list)==1:
