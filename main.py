@@ -137,10 +137,10 @@ def search_project_I():
     print("------------------------")
     while temp != "q":
         try:
-            temp = int(input("请输入你想搜索的类型编号：  输入q或选择5退出"))
+            temp = int(input("请输入你想搜索的类型编号："))
         except ValueError:
-            temp_l.append("q")
-            break
+            print("请规范输入选项！")
+            continue
         else:
             if temp not in [1,2,3,4,5]:
                 print("请输入正确序号！")
