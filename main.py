@@ -154,6 +154,8 @@ def search_project_I():
     if module_get_project.IEs_Gfl(temp_l, "test") != "empty":
         facets.append(module_get_project.IEs_Gfl(temp_l, "project_type"))
     
+    return facets
+    
 
 def search_project_O(s_json):
     r = list()
