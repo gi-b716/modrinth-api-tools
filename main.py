@@ -58,7 +58,7 @@ def connection_test():
 def about():
     print("-----------------------------")
     print("modrinth小助手 —— GavinCQTD")
-    print("v1.1.0 dev2d2")
+    print("v1.1.0 dev2d3")
     print("github：https://github.com/gi-b716/modrinth-api-tools")
     print("-----------------------------\n")
 
@@ -115,19 +115,12 @@ def project_info(info):
         elif temp=="4":
             webbrowser.open("https://modrinth.com/{0}/{1}".format(info[2], info[16]))
 
+
 def search_project_I():
     temp = None
     facets = []
     temp_l = []
     
-    while temp != "q":
-        temp = input("请输入想让搜索结果支持的Minecraft版本：(支持快照、愚人节版，请输入规范)  输入q结束输入")
-        temp_l.append(temp)
-    if module_get_project.IEs_Gfl(temp_l, "test") != "empty":
-        facets.append(module_get_project.IEs_Gfl(temp_l, "versions"))
-        
-    temp_l = []
-    temp = None
     print("\n请选择搜索结果的类型：")
     print("------------------------")
     print("1.模组/服务器插件/数据包")
@@ -143,19 +136,27 @@ def search_project_I():
             print("请规范输入选项！")
             continue
         else:
-            if temp not in [1,2,3,4,5]:
+            if temp not in [1, 2, 3, 4, 5]:
                 print("请输入正确序号！")
                 continue
             elif temp == 5:
                 temp_l.append("q")
                 break
             fields = ["mod", "modpack", "resourcepack", "shader"]
-            temp_l.append(fields[temp-1])
+            project_type = fields[temp - 1]
+            temp_l.append(project_type)
     if module_get_project.IEs_Gfl(temp_l, "test") != "empty":
         facets.append(module_get_project.IEs_Gfl(temp_l, "project_type"))
     
-    return facets
+    temp_l = []
+    temp = None
+    while temp != "q":
+        temp = input("请输入想让搜索结果支持的Minecraft版本：(支持快照、愚人节版，请输入规范)  输入q结束输入")
+        temp_l.append(temp)
+    if module_get_project.IEs_Gfl(temp_l, "test") != "empty":
+        facets.append(module_get_project.IEs_Gfl(temp_l, "versions"))
     
+    return facets
 
 def search_project_O(s_json):
     r = list()
